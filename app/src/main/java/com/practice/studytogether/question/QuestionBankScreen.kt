@@ -36,7 +36,9 @@ fun QuestionBankScreen(questions: List<Question>) {
         Title("Question Bank")
 
         // QuestionsList sorted by time (most recent first)
-        QuestionList(questions = questions.sortedByDescending { it.time })
+        QuestionList(
+            questions = questions.sortedByDescending { it.time },
+            onTopicClick = {})
     }
 }
 

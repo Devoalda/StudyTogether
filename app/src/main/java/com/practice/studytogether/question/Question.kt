@@ -19,6 +19,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -66,7 +67,8 @@ class Question(
 @Composable
 fun QuestionItem(
     question: Question,
-    onItemClick: () -> Unit
+    onItemClick: () -> Unit,
+    onTopicClick: (String) -> Unit
 ) {
     Box(
         modifier = Modifier
@@ -104,8 +106,10 @@ fun QuestionItem(
             // Topic in a pill or medal
             Surface(
                 color = MaterialTheme.colorScheme.primary,
-                shape = RoundedCornerShape(50),
-                modifier = Modifier.padding(vertical = 4.dp)
+                modifier = Modifier
+                    .padding(vertical = 4.dp)
+                    .clip(RoundedCornerShape(50))
+                    .clickable { onTopicClick(question.topic) }
             ) {
                 Text(
                     text = question.topic,
@@ -155,13 +159,14 @@ fun QuestionCardPreview() {
     ComposePracticeTheme {
         QuestionItem(
             question = SampleQuestions[0],
-            onItemClick = { /* Do nothing */ }
+            onItemClick = { /* Do nothing */ },
+            onTopicClick = { /* Do nothing */ }
         )
     }
 }
 
 @Composable
-fun QuestionList(questions: List<Question>) {
+fun QuestionList(questions: List<Question>, onTopicClick: (String) -> Unit) {
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
@@ -170,7 +175,8 @@ fun QuestionList(questions: List<Question>) {
         items(questions) { question ->
             QuestionItem(
                 question = question,
-                onItemClick = { /* Navigate to Question Detail */ }
+                onItemClick = { /* Navigate to Question Detail */ },
+                onTopicClick = onTopicClick
             )
             Spacer(modifier = Modifier.height(16.dp))
         }

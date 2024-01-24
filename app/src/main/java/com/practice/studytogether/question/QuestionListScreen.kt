@@ -61,7 +61,11 @@ fun QuestionListScreen(questions: List<Question>) {
                 )
 
                 // List of Questions based on filter with QuestionList
-                QuestionList(questions = filterQuestionsByTopic(questions, selectedTopic))
+                // QuestionList(questions = filterQuestionsByTopic(questions, selectedTopic))
+                QuestionList(
+                    questions = filterQuestionsByTopic(questions, selectedTopic),
+                    onTopicClick = { topic -> selectedTopic = topic }
+                )
             }
         }
     )
