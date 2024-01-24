@@ -27,12 +27,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.practice.studytogether.Question.Question
 import com.practice.studytogether.ui.theme.AppTheme
 
 
 @Composable
-fun MainScreen(navController: NavHostController, questions: List<Question>) {
+fun MainScreen(navController: NavHostController) {
     val backgroundColor = MaterialTheme.colorScheme.background
     val contentColor = if (backgroundColor == Color.White) {
         MaterialTheme.colorScheme.onPrimary
@@ -43,18 +42,22 @@ fun MainScreen(navController: NavHostController, questions: List<Question>) {
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .background(color = backgroundColor)
             .padding(16.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         // Title
-        Title("Study Together!")
+        Title(
+            "Study Together!", modifier = Modifier
+                .padding(bottom = 16.dp)
+        )
 
         Spacer(modifier = Modifier.height(16.dp))
 
         // Question List Button
         AnimatedButton(
-            onClick = { /* Navigate to Question List */ },
+            onClick = { navController.navigate("questionList") },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = 8.dp)
@@ -79,7 +82,6 @@ fun MainScreen(navController: NavHostController, questions: List<Question>) {
         Spacer(modifier = Modifier.height(16.dp))
     }
 }
-
 
 
 @Composable
@@ -118,18 +120,17 @@ fun AnimatedButton(
 }
 
 
-
 @Composable
-fun Title(title: String) {
+fun Title(title: String, modifier: Modifier = Modifier) {
     AppTheme {
         Text(
             text = title,
             style = TextStyle(
                 fontSize = 24.sp,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.primary
             ),
-            modifier = Modifier
-                .padding(8.dp)
+            modifier = modifier
         )
     }
 }

@@ -4,12 +4,10 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.graphics.Color
 
-
-// Define your custom color scheme for light theme
-val NeoBruntalismColorScheme = lightColorScheme(
-    primary = Color.Black,
-    secondary = Color.White,
-    tertiary = Color(0xFF1E1E1E),
+val CatppucinColorScheme = lightColorScheme(
+    primary = Color(0xFFed8796), // Red
+    secondary = Color(0xFFf0c6c6), // Flamingo
+    tertiary = Color(0xFF1E1E1E), // Darker black
     background = Color.White,
     surface = Color.White,
     error = Color.Red,
@@ -17,16 +15,15 @@ val NeoBruntalismColorScheme = lightColorScheme(
     onSecondary = Color.Black,
     onBackground = Color.Black,
     onSurface = Color.Black,
-    onError = Color.White,
+    onError = Color.White
 )
 
-// Define your custom color scheme for dark theme
-val NeoBruntalismDarkColorScheme = darkColorScheme(
-    primary = Color.White,
-    secondary = Color.Black,
-    tertiary = Color(0xFF1E1E1E),
-    background = Color.Black,
-    surface = Color.Black,
+val CatppucinColorSchemeDark = darkColorScheme(
+    primary = Color(0xFFf4dbd6), // Rosewater
+    secondary = Color(0xFF6e738d), // Overlay0
+    tertiary = Color(0xFF1E1E1E), // Darker black
+    background = Color(0xFF24273a), // Base
+    surface = Color(0xFF5b6078), // Surface2
     error = Color.Red,
     onPrimary = Color.White,
     onSecondary = Color.White,

@@ -38,6 +38,36 @@ private val LightColorScheme = lightColorScheme(
 )
 
 @Composable
+fun AppTheme(
+    useDarkTheme: Boolean = isSystemInDarkTheme(),
+    content: @Composable() () -> Unit
+) {
+    val colors = (if (!useDarkTheme) CatppucinColorScheme else CatppucinColorSchemeDark).let {
+//    val colors =
+//        (if (!useDarkTheme) NeoBruntalismColorScheme else NeoBruntalismDarkColorScheme).let {
+        MaterialTheme.colorScheme.copy(
+            primary = it.primary,
+            secondary = it.secondary,
+            tertiary = it.tertiary,
+            background = it.background,
+            surface = it.surface,
+            error = it.error,
+            onPrimary = it.onPrimary,
+            onSecondary = it.onSecondary,
+            onBackground = it.onBackground,
+            onSurface = it.onSurface,
+            onError = it.onError
+        )
+    }
+
+    MaterialTheme(
+        colorScheme = colors,
+        content = content
+    )
+}
+
+
+@Composable
 fun ComposePracticeTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
